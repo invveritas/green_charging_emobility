@@ -53,3 +53,4 @@ Please store data in the `Data` directory. It will be ignored by git. The data f
 ## Data peculiarities
 
 * An `increment` with values of more than 5500 Wh does not make sense. The maximum power of chargers is 22 kW. The data should be cleaned by removing all values of all charge_log_ids that have at least one value of increment > 5500 Wh.
+* Some values for 'Chargepoint' are NaN. Luckily this is only the case where the connector is identified by a UUID. Hence we can replace the NaN with a unique number based on the connector UUID
