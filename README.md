@@ -12,3 +12,15 @@ Open Energy Data Hackdays 2021
 * 'metervalue': Not used
 * 'increment': The amount of energy transferred (in watt-hours) in the last 15 minutes (i.e. up to the 'timestamp' value)
 * 'timestamp': The time of measurement in UTC.
+
+## CO2 data format
+
+## Coding standards
+
+Please store notebooks in the `Notebooks` directory.
+
+Please store data in the `Data` directory. It will be ignored by git. The data files should be named:
+
+* CH 2020-2021.csv
+* metervalues_pseudonymized_2_neu.csv
+* metervalues_pseudonymized_1_neu.csv
