@@ -15,6 +15,31 @@ Open Energy Data Hackdays 2021
 
 ## CO2 data format
 
+Columns are renamed to fit those used in [the notebook here](https://github.com/invveritas/green_charging_emobility/blob/main/Notebooks/Merge%20meter%20with%20CO2%20data.ipynb).
+
+### Generic columns
+
+* 'datetime': The time of measurement in UTC.
+* 'co2_intensity': The CO2 intensity (g co2/kWh)
+* 'co2_production': The CO2 intensity of Swiss production (g co2/kWh)
+* 'co2_import': The CO2 intensity of imported electricity (g co2/kWh)
+
+### Power in the CH consumption mix (production plus imports minus exports)
+
+All values in MW
+* 'nuclear
+* 'geothermal'
+* 'biomass'
+* 'coal'
+* 'wind'
+* 'solar'
+* 'hydro'
+* 'gas'
+* 'oil
+* 'unknown'
+* 'battery'
+* 'hydro'
+
 ## Coding standards
 
 Please store notebooks in the `Notebooks` directory.
@@ -28,6 +53,3 @@ Please store data in the `Data` directory. It will be ignored by git. The data f
 ## Data peculiarities
 
 * An `increment` with values of more than 5500 Wh does not make sense. The maximum power of chargers is 22 kW. The data should be cleaned by removing all values of all charge_log_ids that have at least one value of increment > 5500 Wh.
-* Units for file 'CH 2020-2021.csv':
-  * carbon intensity: g per kWh
-  * power: MW
