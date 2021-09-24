@@ -28,3 +28,6 @@ Please store data in the `Data` directory. It will be ignored by git. The data f
 ## Data peculiarities
 
 * An `increment` with values of more than 5500 Wh does not make sense. The maximum power of chargers is 22 kW. The data should be cleaned by removing all values of all charge_log_ids that have at least one value of increment > 5500 Wh.
+* Units for file 'CH 2020-2021.csv':
+  * carbon intensity: g per kWh
+  * power: MW
