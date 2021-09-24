@@ -24,3 +24,7 @@ Please store data in the `Data` directory. It will be ignored by git. The data f
 * CH 2020-2021.csv
 * metervalues_pseudonymized_2_neu.csv
 * metervalues_pseudonymized_1_neu.csv
+
+## Data peculiarities
+
+* An `increment` with values of more than 5500 Wh does not make sense. The maximum power of chargers is 22 kW.
