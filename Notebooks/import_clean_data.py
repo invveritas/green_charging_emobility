@@ -159,10 +159,11 @@ def load_co2_data(data_dir):
     return co2
 
 
-def load_annotated_meter_data(data_dir):
+def load_annotated_meter_data(data_dir, meter=None):
     data_dir = validate_data_dir(data_dir)
 
-    meter = load_meter_data(data_dir)
+    if meter is None:
+        meter = load_meter_data(data_dir)
     co2 = load_co2_data(data_dir)
 
     epoch = pd.to_datetime(0, utc=True)
@@ -225,4 +226,4 @@ def load_filtered_meter_data(data_dir):
     df = df.astype({"Chargepoint": str, "connector": str, "charge_log_id": str})
     df["unique_charge_point"] = df["Chargepoint"] + "|" + df["connector"]
 
-    return df
+    return load_annotated_meter_data(data_dir, df)
