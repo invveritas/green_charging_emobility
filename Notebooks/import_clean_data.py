@@ -123,7 +123,6 @@ def load_co2_data(data_dir):
         "power_production_oil_avg",
         "power_production_unknown_avg",
         "carbon_rate_avg",
-        "total_production_avg",
         "total_storage_avg",
         "total_discharge_avg",
         "total_import_avg",
