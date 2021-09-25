@@ -56,6 +56,8 @@ All values in MW
 * 'unknown'
 * 'battery'
 * 'hydro'
+* 'consumption': Total consumption in CH (MW)
+* 'production': Total production in CH (MW)
 
 ## Coding standards
 

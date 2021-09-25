@@ -122,9 +122,7 @@ def load_co2_data(data_dir):
         "power_production_gas_avg",
         "power_production_oil_avg",
         "power_production_unknown_avg",
-        "total_consumption_avg",
         "carbon_rate_avg",
-        "total_production_avg",
         "total_storage_avg",
         "total_discharge_avg",
         "total_import_avg",
@@ -153,16 +151,19 @@ def load_co2_data(data_dir):
         "power_consumption_unknown_avg": "unknown",
         "power_consumption_battery_discharge_avg": "battery",
         "power_consumption_hydro_discharge_avg": "hydro",
+        "total_consumption_avg": "consumption",
+        "total_production_avg": "production",
     }
 
     co2.rename(mapping, axis=1, inplace=True)
     return co2
 
 
-def load_annotated_meter_data(data_dir):
+def load_annotated_meter_data(data_dir, meter=None):
     data_dir = validate_data_dir(data_dir)
 
-    meter = load_meter_data(data_dir)
+    if meter is None:
+        meter = load_meter_data(data_dir)
     co2 = load_co2_data(data_dir)
 
     epoch = pd.to_datetime(0, utc=True)
@@ -211,3 +212,18 @@ def load_annotated_meter_data(data_dir):
     meter["unique_charge_point"] = meter["Chargepoint"] + "|" + meter["connector"]
 
     return meter
+
+
+def load_filtered_meter_data(data_dir):
+    data_dir = validate_data_dir(data_dir)
+
+    assert (data_dir / "seperated_meter_data.csv").exists()
+
+    df = pd.read_csv(data_dir / 'seperated_meter_data.csv')
+    df.drop('Unnamed: 0', inplace=True, axis=1)
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+    df = df.astype({"Chargepoint": str, "connector": str, "charge_log_id": str})
+    df["unique_charge_point"] = df["Chargepoint"] + "|" + df["connector"]
+
+    return load_annotated_meter_data(data_dir, df)
