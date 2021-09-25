@@ -122,7 +122,6 @@ def load_co2_data(data_dir):
         "power_production_gas_avg",
         "power_production_oil_avg",
         "power_production_unknown_avg",
-        "total_consumption_avg",
         "carbon_rate_avg",
         "total_production_avg",
         "total_storage_avg",
@@ -153,6 +152,7 @@ def load_co2_data(data_dir):
         "power_consumption_unknown_avg": "unknown",
         "power_consumption_battery_discharge_avg": "battery",
         "power_consumption_hydro_discharge_avg": "hydro",
+        'total_consumption_avg': 'consumption',
     }
 
     co2.rename(mapping, axis=1, inplace=True)
