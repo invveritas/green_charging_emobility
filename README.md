@@ -3,6 +3,42 @@ Open Energy Data Hackdays 2021
 
 [Link to challenge on Hackdays](https://hack.opendata.ch/project/768). Please join this challenge!
 
+## Results
+
+### CO2 intensity of the Swiss electricity mix
+* inversely correlates with SwissIX: Swiss hydro produces in high price hours preferably.
+* in low price hours: determined by imports which are themselves influenced by weather (wind, temperature)
+* there are clear seasonal and workday / weekend trends
+* however, individual days can be very different!
+
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
+
+### SwissIX dayahead
+01.01.2020 until 25.09.2021
+![img_3.png](img_3.png)
+
+### CO2 reduction potential
+
+#### shift charging within the duration of the charging process
+cars are usually plug in for longer than they need. How much CO2 could we save if we optimize charging within the timespan
+in which the car is connected to the charging station?
+
+-> about 10-15 %
+
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+
+### shift charging up to 12 hrs after the end of the charging process
+this mostly means to take potential workplace charging into account
+
+-> about 20-30 %
+
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+
+
 ## Template notebook
 
 Please start each analysis by duplicating the notebook `Notebooks/Notebook template.ipynb`.
