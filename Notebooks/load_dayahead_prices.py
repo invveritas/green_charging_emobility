@@ -28,26 +28,26 @@ def load_dayahead_prices(filepath, in_utc=True, local_time=False, shift_time="st
     df = df.replace('', np.nan)
     df = df.replace('-', np.nan)
     # (!) convert eu time format to us time format:
-    df['date'] = df["MTU (CET)"].apply(
+    df['datetime'] = df["MTU (CET)"].apply(
         lambda x: datetime.datetime.strptime(x[:16].replace('.', '/'), '%d/%m/%Y %H:%M').strftime(
             '%Y-%m-%d %H:%M:%S'))  # exctract starting time from time period strings
     df.drop(["MTU (CET)"], axis=1, inplace=True)
 
-    df['date'] = pd.to_datetime(df['date'])
+    df['datetime'] = pd.to_datetime(df['datetime'])
     if shift_time == "center":
-        freq = df['date'][1] - df['date'][0]  # extract frequency (60min for CH, IT, FR ; 15min for AT, DE)
-        df['date'] = pd.to_datetime(
-            df['date']) + freq / 2  # Shift timestamp so that it lies in the center of the period
+        freq = df['datetime'][1] - df['datetime'][0]  # extract frequency (60min for CH, IT, FR ; 15min for AT, DE)
+        df['datetime'] = pd.to_datetime(
+            df['datetime']) + freq / 2  # Shift timestamp so that it lies in the center of the period
 
     elif shift_time == "end":
-        freq = df['date'][1] - df['date'][0]  # extract frequency (60min for CH, IT, FR ; 15min for AT, DE)
-        df['date'] = pd.to_datetime(df['date']) + freq
+        freq = df['datetime'][1] - df['datetime'][0]  # extract frequency (60min for CH, IT, FR ; 15min for AT, DE)
+        df['datetime'] = pd.to_datetime(df['datetime']) + freq
 
-    df.set_index('date', inplace=True)
-    df = df.astype('float64')
+    # df.set_index('datetime', inplace=True)
+    df["Day-ahead Price [EUR/MWh]"] = pd.to_numeric(df["Day-ahead Price [EUR/MWh]"], downcast="float")
 
     if in_utc is True:
         # convert to local time:
-        df.index = df.index.tz_localize('Europe/Zurich', ambiguous="infer", nonexistent="NaT").tz_convert('UTC')
+        df['datetime'] = df['datetime'].dt.tz_localize('Europe/Zurich', ambiguous="infer", nonexistent="NaT").dt.tz_convert('UTC')
 
     return df
