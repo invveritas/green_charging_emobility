@@ -211,3 +211,18 @@ def load_annotated_meter_data(data_dir):
     meter["unique_charge_point"] = meter["Chargepoint"] + "|" + meter["connector"]
 
     return meter
+
+
+def load_filtered_meter_data(data_dir):
+    data_dir = validate_data_dir(data_dir)
+
+    assert (data_dir / "seperated_meter_data.csv").exists()
+
+    df = pd.read_csv(data_dir / 'seperated_meter_data.csv')
+    df.drop('Unnamed: 0', inplace=True, axis=1)
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+    df = df.astype({"Chargepoint": str, "connector": str, "charge_log_id": str})
+    df["unique_charge_point"] = df["Chargepoint"] + "|" + df["connector"]
+
+    return df
