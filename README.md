@@ -11,7 +11,7 @@ Open Energy Data Hackdays 2021
 * there are clear seasonal and workday / weekend trends
 * however, individual days can be very different!
 
-![](Images/Daily CO2 by hour.png)
+![Images/Daily CO2 by hour.png](Images/Daily CO2 by hour.png)
 
 
 ### SwissIX dayahead
@@ -26,18 +26,18 @@ in which the car is connected to the charging station?
 
 -> about 10-15 %
 
-![](Images/Hexbin given versus look ahead charging same period.png)
+![Images/Hexbin given versus look ahead charging same period.png](Images/Hexbin given versus look ahead charging same period.png)
 
-![](Images/Hist of current cycle optimized CO2 burden.png)
+![Images/Hist of current cycle optimized CO2 burden.png](Images/Hist of current cycle optimized CO2 burden.png)
 
 ### shift charging up to 12 hrs after the end of the charging process
 this mostly means to take potential workplace charging into account
 
 -> about 20-30 %
 
-![](Images/Hexbin given versus optimal charging same period.png)
+![Images/Hexbin given versus optimal charging same period.png](Images/Hexbin given versus optimal charging same period.png)
 
-![](Images/Hist of look ahead CO2 burden.png)
+![Images/Hist of look ahead CO2 burden.png](Images/Hist of look ahead CO2 burden.png)
 
 ## Template notebook
 
