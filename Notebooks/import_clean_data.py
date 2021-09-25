@@ -48,10 +48,14 @@ def load_meter_data(data_dir):
     meter_1 = meter_2 = None
 
     # replace NaN Chargpoints with unique number based on UUID of the connector
-    nan_mask = meter['Chargepoint'].isna()
-    nan_cp_connectors = meter[nan_mask]['connector'].unique()
+    nan_mask = meter["Chargepoint"].isna()
+    nan_cp_connectors = meter[nan_mask]["connector"].unique()
     for i, connector in enumerate(nan_cp_connectors):
-        meter[nan_mask].loc[meter[nan_mask]["connector"] == connector, ["Chargepoint"]] = i + 10000  # Arbitrary offset
+        meter[nan_mask].loc[
+            meter[nan_mask]["connector"] == connector, ["Chargepoint"]
+        ] = (
+            i + 10000
+        )  # Arbitrary offset
 
     return meter
 
@@ -188,7 +192,13 @@ def load_annotated_meter_data(data_dir):
     def get_co2_for_datetime(dt, interp_dict=interp_dict):
         try:
             func = interp_dict[(dt.year, dt.month, dt.day)]
-            return float(func(to_unix_timestamp_neutral(dt)))
+            as_ts = to_unix_timestamp_neutral(dt)
+            end_value = float(func(as_ts))
+            try:
+                start_value = float(func(as_ts - (15 * 60)))  # Fifteen minutes earlier
+            except ValueError:
+                start_value = end_value
+            return (start_value + end_value) / 2
         except (KeyError, ValueError):
             return 0
 
