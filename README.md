@@ -3,7 +3,24 @@ Open Energy Data Hackdays 2021
 
 [Link to challenge on Hackdays](https://hack.opendata.ch/project/768). Please join this challenge!
 
-## Meter data format
+## Template notebook
+
+Please start each analysis by duplicating the notebook `Notebooks/Notebook template.ipynb`.
+
+## Annotated meter data format
+
+* 'id': `int`. Unclear, not used.
+* 'Chargepoint': `object`. The unique identifier (number or UUID) of the physical charging station. One station can have more than one cable, and hence more than one charging session.
+* 'connector': `object`. The unique identifier (number or UUID) of the physical cable or attached device. In some cases, a cable can be left in the charging station for a long period of time, and used for multiple charging stations.
+* 'unique_charge_point': `str`. A unique identifier (str) for a combination of outlet and charger. Formed by joining the `Chargepoint` and `connector` with a `|` character.
+* 'charge_log_id': `object`. The unique identifier (number or UUID) of a particular session charging a battery
+* 'metervalue': `int`. Not used
+* 'increment': `int`. The amount of energy transferred (in watt-hours) in the last 15 minutes (i.e. up to the 'timestamp' value)
+* 'timestamp': `numpy.datetime64[ns]` without timezone. The time of measurement in UTC.
+* 'co2_intensity': `float`. Interpolated CO2 intensity (in g CO2-eq. / kWh) at the time of charging
+* 'co2_total': `float`. Total CO2 (in kg CO2-eq.) produced during this charging session.
+
+## Raw meter data format
 
 * 'id': Unclear, not used.
 * 'Chargepoint': The unique identifier (number or UUID) of the physical charging station. One station can have more than one cable, and hence more than one charging session.
